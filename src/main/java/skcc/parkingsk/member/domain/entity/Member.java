@@ -10,18 +10,18 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-import lombok.AllArgsConstructor;
 import lombok.Data;
-import lombok.NoArgsConstructor;
 import skcc.parkingsk.member.domain.enums.MemberStatus;
 import skcc.parkingsk.member.domain.enums.RoleType;
+import skcc.parkingsk.member.domain.vo.FavorateParkingLot;
 import skcc.parkingsk.member.domain.vo.Login;
+import skcc.parkingsk.member.domain.vo.RecentParkingLot;
 
 @Entity
 @Table(name="member")
 @Data
-@AllArgsConstructor
-@NoArgsConstructor
+//@AllArgsConstructor
+//@NoArgsConstructor
 public class Member {
 
 	@Id
@@ -43,23 +43,24 @@ public class Member {
 	private Login login;
 	
 //	@Column(name = "penalty")
-//	private List<Penalty>;
-//	
-//	@Column(name = "roleType")
-//	@Enumerated(EnumType.STRING)
-//	private RoleType roleType;
+//	@Embedded
+//	private Penalty;
+	
+	@Column(name = "roleType")
+	@Enumerated(EnumType.STRING)
+	private RoleType roleType;
 
 	@Column(name = "memberStatus")
 	@Enumerated(EnumType.STRING)
 	private MemberStatus memberStatus;
 	
-//	@Column(name = "favorateParkingLotList")
-//	@Embedded
-//	private favorateParkingLotList List<FavorateParkingLot>;
-//	
-//	@Column(name = "recentParkingLotList")
-//	@Embedded
-//	private recentParkingLotList List<RecentParkingLot>;
+	@Column(name = "favorateParkingLotList")
+	@Embedded
+	private FavorateParkingLot favorateParkingLotList;
+	
+	@Column(name = "recentParkingLotList")
+	@Embedded
+	private RecentParkingLot recentParkingLotList;
 	
 
 }

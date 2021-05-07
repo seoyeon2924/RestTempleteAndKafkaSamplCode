@@ -11,14 +11,21 @@ import lombok.NoArgsConstructor;
 
 @Data
 //@AllArgsConstructor
-//@NoArgsConstructor
+@NoArgsConstructor
 @Embeddable
 public class RecentParkingLot {
+	private Long parkingLotId;
+	private String parkingLotName;
 	
-	@JsonCreator
-	public RecentParkingLot(@JsonProperty("parkingLotId") String parkingLotId,
-							@JsonProperty("parkingLotName") String parkingLotName) {
+//	RecentParkingLot(){
 //		this.parkingLotId = parkingLotId;
 //		this.parkingLotName = parkingLotName;
+//	}
+	
+	@JsonCreator
+	public RecentParkingLot(@JsonProperty("parkingLotId") Long parkingLotId,
+							@JsonProperty("parkingLotName") String parkingLotName) {
+		this.parkingLotId = parkingLotId;
+		this.parkingLotName = parkingLotName;
 	}
 }
