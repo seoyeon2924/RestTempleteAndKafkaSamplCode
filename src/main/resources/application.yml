@@ -1,18 +1,18 @@
 spring:
   application:
-    name: skparking
-#  profiles:
-#    active: default
-  datasource:
-#    url: jdbc:h2:mem:testdb
-#    username: sa
-#    password:
-#    driver-class-name: org.h2.Driver
-    url: jdbc:mysql:localhost
-    username: sa
-    password:
-    driver-class-name: org.h2.Driver
-
+    name: parkingsk_member
+  profiles:
+    active: default
+    datasource:
+      url: jdbc:h2:mem:testdb # 기본H2 DB 연결 했을 때
+      username: sa
+      password:
+      driver-class-name: org.h2.Driver
+#  datasource:
+#    url: jdbc:mysql://localhost:3306/member #mariadb에 test database를 만듦
+#    username: root
+#    password: 1234
+#    driver-class-name: org.mariadb.jdbc.Driver
   jpa:
     hibernate:
       ddl-auto: create

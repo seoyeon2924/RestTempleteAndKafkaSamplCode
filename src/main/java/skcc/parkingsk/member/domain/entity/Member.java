@@ -11,16 +11,15 @@ import javax.persistence.Id;
 import javax.persistence.Table;
 
 import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import skcc.parkingsk.member.domain.enums.MemberStatus;
 import skcc.parkingsk.member.domain.enums.RoleType;
-import skcc.parkingsk.member.domain.vo.FavorateParkingLot;
 import skcc.parkingsk.member.domain.vo.Login;
-import skcc.parkingsk.member.domain.vo.RecentParkingLot;
 
 @Entity
 @Table(name="member")
 @Data
-//@AllArgsConstructor
+@RequiredArgsConstructor
 //@NoArgsConstructor
 public class Member {
 
@@ -41,11 +40,7 @@ public class Member {
 	@Column(name = "login")
 	@Embedded
 	private Login login;
-	
-//	@Column(name = "penalty")
-//	@Embedded
-//	private Penalty;
-	
+
 	@Column(name = "roleType")
 	@Enumerated(EnumType.STRING)
 	private RoleType roleType;
@@ -53,14 +48,4 @@ public class Member {
 	@Column(name = "memberStatus")
 	@Enumerated(EnumType.STRING)
 	private MemberStatus memberStatus;
-	
-	@Column(name = "favorateParkingLotList")
-	@Embedded
-	private FavorateParkingLot favorateParkingLotList;
-	
-	@Column(name = "recentParkingLotList")
-	@Embedded
-	private RecentParkingLot recentParkingLotList;
-	
-
 }
