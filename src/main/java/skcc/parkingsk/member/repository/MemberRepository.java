@@ -10,5 +10,4 @@ import skcc.parkingsk.member.domain.entity.Member;
 
 public interface MemberRepository extends JpaRepository<Member,Long> {
 
-//  Member findByLoginId(String LoginId);
 }

@@ -1,52 +1,41 @@
-package skcc.parkingsk.member.service.serviceImpl;
+package skcc.parkingsk.member.bff;
 
-import java.util.List;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.web.client.RestTemplate;
 import skcc.parkingsk.member.controller.dto.MemberDto;
-import skcc.parkingsk.member.domain.entity.Member;
-import skcc.parkingsk.member.repository.MemberRepository;
-import skcc.parkingsk.member.service.MemberService;
 
 /**
- * @author seoyeon on 2021/05/11
+ * @author seoyeon on 2021/05/14
  * @project skparking
  */
 
 @Service
 @RequiredArgsConstructor
-public class MemberServiceImpl implements MemberService {
+public class BffService {
 
-  private final MemberRepository memberRepository;
-  private final RestTemplate restTemplate;
+  private final RestTemplate restTemplate; // 서비스 안에 restTemplate 추가
 
-
-
-  @Override
+  //1. BFF의 Service에서 Get 요청
   public void testRestTempleteGet(Long id) {
     MemberDto returnMemberDto = this.restTemplate
-        .getForObject(String.format("%s%s%d", "http://localhost:8081", "/testRestTempleteGet/", id),
-            MemberDto.class);
+        .getForObject(String.format("%s%s%d", "http://localhost:8082", "/testRestTempleteGet/", id),
+            MemberDto.class); // localhost:8081(MSA)에서 리턴하는 memberDto를 반환 받을 수 있음
 
     System.out.println(returnMemberDto.getLoginId());
     System.out.println(returnMemberDto.getName());
   }
 
-
-  @Override
+  //2. BFF의 Service에서 POST 요청
   public void testRestTempletePost(MemberDto memberDto) {
-    // 자 나는 BFF야, MSA에게 포스트 매핑을 던져보자
-
 
     memberDto.setName("안서연BFF이름");
     memberDto.setLoginId("안서연BFF로그인아이디");
     MemberDto returnMemberDto = this.restTemplate
-        .postForObject(String.format("%s%s", "http://localhost:8081", "/testRestTempletePost"),
-            memberDto, MemberDto.class);
+        .postForObject(String.format("%s%s", "http://localhost:8082", "/testRestTempletePost"),
+            memberDto, MemberDto.class); // localhost:8081(MSA에서 리턴 하는 memberDto를 반환받을 수 있음
 
     System.out.println(returnMemberDto.getName());
     System.out.println(returnMemberDto.getLoginId());
-
   }
 }
